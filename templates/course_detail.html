@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="section">
+  <div class="container detail-grid">
+    <div>
+      <p class="eyebrow">{{ course.category }} · {{ course.level }}</p>
+      <h1>{{ course.title }}</h1>
+      <p class="lead">{{ course.description }}</p>
+      <div class="detail-meta">
+        <div>
+          <p class="label">Instructor</p>
+          <p class="value">{{ course.instructor }}</p>
+        </div>
+        <div>
+          <p class="label">Enrolled</p>
+          <p class="value">{{ course.enrolled }} learners</p>
+        </div>
+      </div>
+      <div class="button-row">
+        <a class="button primary" href="{{ url_for('login') }}">Enroll now</a>
+        <a class="button ghost" href="{{ url_for('courses') }}">Back to catalog</a>
+      </div>
+    </div>
+    <div class="panel">
+      <h2>Module roadmap</h2>
+      <ul class="timeline">
+        {% for module in course.modules %}
+        <li>
+          <div>
+            <p class="value">{{ module.title }}</p>
+            <p class="label">{{ module.duration }}</p>
+          </div>
+          <span class="status">{{ module.status }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+      <div class="divider"></div>
+      <h3>Assignments</h3>
+      <ul class="checklist">
+        {% for assignment in course.assignments %}
+        <li>{{ assignment }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+{% endblock %}
