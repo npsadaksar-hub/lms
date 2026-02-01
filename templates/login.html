@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="section">
+  <div class="container auth-grid">
+    <div>
+      <p class="eyebrow">Secure access</p>
+      <h1>Sign in to LearningHub</h1>
+      <p class="lead">
+        Connect with your cohort, track progress, and manage certifications from one place.
+      </p>
+      <div class="info-card">
+        <h3>Need access?</h3>
+        <p>Reach out to your learning administrator to be invited to the platform.</p>
+      </div>
+    </div>
+    <form class="panel form-card">
+      <label>
+        Work email
+        <input type="email" placeholder="name@company.com" />
+      </label>
+      <label>
+        Password
+        <input type="password" placeholder="Enter your password" />
+      </label>
+      <button class="button primary" type="button">Sign in</button>
+      <div class="form-footer">
+        <span>Forgot your password?</span>
+        <a href="{{ url_for('dashboard') }}">Reset</a>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %}

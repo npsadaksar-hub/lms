@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <h1>Welcome back, {{ dashboard.learner }}</h1>
+      <p>{{ dashboard.role }} · Your learning dashboard</p>
+    </div>
+    <div class="dashboard-grid">
+      <div class="panel">
+        <h2>Active courses</h2>
+        <div class="stack">
+          {% for course in dashboard.active_courses %}
+          <div class="progress-card">
+            <div>
+              <p class="value">{{ course.title }}</p>
+              <p class="label">Instructor · {{ course.instructor }}</p>
+            </div>
+            <div class="progress">
+              <div class="progress-bar" style="width: {{ course.progress }}%"></div>
+              <p class="label">{{ course.progress }}% complete</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="panel">
+        <h2>Upcoming deadlines</h2>
+        <ul class="timeline">
+          {% for deadline in dashboard.deadlines %}
+          <li>
+            <div>
+              <p class="value">{{ deadline.title }}</p>
+              <p class="label">{{ deadline.course }}</p>
+            </div>
+            <span class="status">Due {{ deadline.due }}</span>
+          </li>
+          {% endfor %}
+        </ul>
+        <div class="divider"></div>
+        <h3>Announcements</h3>
+        <ul class="checklist">
+          {% for note in dashboard.announcements %}
+          <li>{{ note }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="panel">
+        <h2>Completed courses</h2>
+        <div class="stack">
+          {% for course in dashboard.completed_courses %}
+          <div class="badge-card">
+            <div>
+              <p class="value">{{ course.title }}</p>
+              <p class="label">{{ course.instructor }}</p>
+            </div>
+            <span class="pill success">Completed</span>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="divider"></div>
+        <h3>Next steps</h3>
+        <p class="muted">
+          Schedule a coaching session and select a new cohort path aligned to your Q2 goals.
+        </p>
+        <a class="button primary" href="{{ url_for('courses') }}">Explore new cohorts</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

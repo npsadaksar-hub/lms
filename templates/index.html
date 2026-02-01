@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <p class="eyebrow">Learning management system</p>
+      <h1>Deliver personalized learning journeys in one place.</h1>
+      <p class="lead">
+        Align onboarding, upskilling, and leadership development with clear pathways,
+        progress tracking, and coaching support.
+      </p>
+      <div class="hero-actions">
+        <a class="button primary" href="{{ url_for('courses') }}">Browse courses</a>
+        <a class="button ghost" href="{{ url_for('dashboard') }}">View dashboard</a>
+      </div>
+      <div class="metrics">
+        <div>
+          <p class="metric">42</p>
+          <p class="metric-label">Active cohorts</p>
+        </div>
+        <div>
+          <p class="metric">1,240</p>
+          <p class="metric-label">Learners</p>
+        </div>
+        <div>
+          <p class="metric">94%</p>
+          <p class="metric-label">Completion rate</p>
+        </div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h2>Upcoming learning sprint</h2>
+      <p>Design research fundamentals · Starts Monday</p>
+      <ul>
+        <li>Live workshop + curated videos</li>
+        <li>Coach feedback and office hours</li>
+        <li>Team-based reflection prompts</li>
+      </ul>
+      <div class="card-footer">
+        <div>
+          <p class="label">Seats remaining</p>
+          <p class="value">8</p>
+        </div>
+        <a class="button primary" href="{{ url_for('login') }}">Reserve seat</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Recommended courses</h2>
+      <p>Curated learning paths tailored to your team goals.</p>
+    </div>
+    <div class="course-grid">
+      {% for course in courses %}
+      <article class="course-card">
+        <div class="course-meta">
+          <span class="pill">{{ course.category }}</span>
+          <span class="pill neutral">{{ course.level }}</span>
+        </div>
+        <h3>{{ course.title }}</h3>
+        <p>{{ course.description }}</p>
+        <div class="course-footer">
+          <div>
+            <p class="label">Instructor</p>
+            <p class="value">{{ course.instructor }}</p>
+          </div>
+          <a href="{{ url_for('course_detail', course_id=course.id) }}" class="link">View details</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
